@@ -9,14 +9,9 @@ indent() {
 echo "-----> Install vips"
 BUILD_DIR=$1
 CACHE_DIR=$2
-VENDOR_DIR=vendor
 DOWNLOAD_URL=http://pm-tiles-staging.s3-website-us-east-1.amazonaws.com/vips-heroku.tar.gz
 
 echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 
 cd $BUILD_DIR
-mkdir -p $VENDOR_DIR
-cd $VENDOR_DIR
 curl -L $DOWNLOAD_URL | tar xz
-
-ls
