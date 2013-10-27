@@ -2,19 +2,22 @@
 
 set -e
 
-indent() {
-  sed -u 's/^/       /'
-}
-
-echo "-----> Install vips"
 BUILD_DIR=$1
 CACHE_DIR=$2
-DOWNLOAD_URL=http://pm-tiles-staging.s3-website-us-east-1.amazonaws.com/vips-heroku.tar.gz
 
-echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
+# Buildpack URL
+ARCHIVE_NAME=vips-heroku
+FILE_NAME=${ARCHIVE_NAME}.tar.gz
+BUILDPACK_PACKAGE=http://pm-tiles-staging.s3-website-us-east-1.amazonaws.com/${FILE_NAME}
 
-cd $BUILD_DIR
-mkdir vendor
-cd vendor
-curl -L $DOWNLOAD_URL | tar xz
-ls /app/*
+mkdir -p $CACHE_DIR
+if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
+  echo "-----> Fetching vips ${VERSION} binaries at ${BUILDPACK_PACKAGE}"
+  curl $BUILDPACK_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+fi
+
+echo "-----> Extracting vips ${VERSION} binaries to ${BUILD_DIR}/vips"
+mkdir -p $CACHE_DIR/$ARCHIVE_NAME
+# mkdir -p $BUILD_DIR/vendor
+tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
+mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vips
