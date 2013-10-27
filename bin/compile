@@ -20,7 +20,7 @@ echo "-----> Extracting VIPS binaries to ${BUILD_DIR}/vips"
 mkdir -p $CACHE_DIR/$ARCHIVE_NAME
 # mkdir -p $BUILD_DIR/vendor
 tar zxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
-mv $CACHE_DIR/vips $BUILD_DIR/vips
+mv $CACHE_DIR/vips /app/vips
 
 echo $PKG_CONFIG_PATH
 ls /app/*
