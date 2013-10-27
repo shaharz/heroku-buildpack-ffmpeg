@@ -14,5 +14,7 @@ DOWNLOAD_URL=http://pm-tiles-staging.s3-website-us-east-1.amazonaws.com/vips-her
 echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 
 cd $BUILD_DIR
+mkdir vendor
+cd vendor
 curl -L $DOWNLOAD_URL | tar xz
 ls /app/*
