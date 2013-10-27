@@ -15,3 +15,4 @@ echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 
 cd $BUILD_DIR
 curl -L $DOWNLOAD_URL | tar xz
+ls /app/*

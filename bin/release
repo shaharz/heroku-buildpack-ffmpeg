@@ -1,6 +1,8 @@
 #!/bin/sh
-echo "---"
-echo "addons:"
-echo "config_vars:"
-echo "  LD_LIBRARY_PATH: $PATH:/app/vips/lib"
-echo "  PKG_CONFIG_PATH: $PKG_CONFIG_PATH:/app/vips/lib/pkconfig"
+
+cat << EOF
+---
+config_vars:
+	LD_LIBRARY_PATH: "/usr/local/lib:/usr/lib:/lib:$PATH:/app/vips/lib"
+	PKG_CONFIG_PATH: "/usr/lib/pkgconfig:/app/vips/lib/pkgconfig"
+EOF
