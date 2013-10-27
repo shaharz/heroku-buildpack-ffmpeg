@@ -12,12 +12,12 @@ BUILDPACK_PACKAGE=http://pm-tiles-staging.s3-website-us-east-1.amazonaws.com/${F
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-  echo "-----> Fetching vips ${VERSION} binaries at ${BUILDPACK_PACKAGE}"
-  curl $BUILDPACK_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+  echo "-----> Fetching VIPS binaries at ${BUILDPACK_PACKAGE}"
+  curl $BUILDPACK_PACKAGE -o $CACHE_DIR/$FILE_NAME
 fi
 
-echo "-----> Extracting vips ${VERSION} binaries to ${BUILD_DIR}/vips"
+echo "-----> Extracting VIPS binaries to ${BUILD_DIR}/vips"
 mkdir -p $CACHE_DIR/$ARCHIVE_NAME
 # mkdir -p $BUILD_DIR/vendor
-tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
+tar zxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
 mv $CACHE_DIR/$ARCHIVE_NAME $BUILD_DIR/vips
