@@ -16,12 +16,14 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   curl $BUILDPACK_PACKAGE -o $CACHE_DIR/$FILE_NAME
 fi
 
-echo "-----> Extracting VIPS binaries to ${BUILD_DIR}/vips"
-mkdir -p $CACHE_DIR/$ARCHIVE_NAME
-# mkdir -p $BUILD_DIR/vendor
+echo "-----> Extracting VIPS binaries to /app/vips"
+mkdir -p $CACHE_DIR/vips
+# ugly hack: copy VIPS twice, once so /app/vips so the gem compiles, then to BUILD_DIR/vips (which becomes /app/vips when the build succeeds) so the gem runs
 tar zxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
 cp -r $CACHE_DIR/vips /app/vips
 mv $CACHE_DIR/vips $BUILD_DIR/vips
 
 echo $PKG_CONFIG_PATH
-ls /app/*
+echo $LD_LIBRARY_PATH
+ls /app/vips/*
+pkg-config vips --libs
