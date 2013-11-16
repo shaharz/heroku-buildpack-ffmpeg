@@ -6,9 +6,9 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # Buildpack URL
-ARCHIVE_NAME=vips-heroku
+ARCHIVE_NAME=vips-heroku-7.36.4
 FILE_NAME=${ARCHIVE_NAME}.tar.gz
-BUILDPACK_PACKAGE=http://pm-tiles-staging.s3-website-us-east-1.amazonaws.com/${FILE_NAME}
+BUILDPACK_PACKAGE=http://moon-tiles.s3.amazonaws.com/extra/${FILE_NAME}
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
