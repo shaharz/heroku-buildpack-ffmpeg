@@ -6,7 +6,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # Buildpack URL
-ARCHIVE_NAME=vips-heroku-7.36.4
+ARCHIVE_NAME=vips-heroku-7.36.5
 FILE_NAME=${ARCHIVE_NAME}.tar.gz
 BUILDPACK_PACKAGE=http://moon-tiles.s3.amazonaws.com/extra/${FILE_NAME}
 
@@ -25,5 +25,5 @@ mv $CACHE_DIR/vips $BUILD_DIR/vips
 
 echo $PKG_CONFIG_PATH
 echo $LD_LIBRARY_PATH
-ls /app/vips/*
+#ls /app/vips/*
 pkg-config vips --libs
