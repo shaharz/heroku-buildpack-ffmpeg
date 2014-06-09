@@ -23,6 +23,7 @@ tar zxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
 cp -r $CACHE_DIR/vips /app/vips
 mv $CACHE_DIR/vips $BUILD_DIR/vips
 
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/app/vips/lib/pkgconfig/"
 echo $PKG_CONFIG_PATH
 echo $LD_LIBRARY_PATH
 ls /app/vips/*
